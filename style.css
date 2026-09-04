@@ -33,11 +33,26 @@ body {
   font-family: var(--font);
 }
 
-.chatbot h1 {
-  color: var(--primary-color-contrast);
+.overskrift {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 30px 10px 10px 10px;
+  margin: 0;
+}
+
+.overskrift h1 {
+  color: white;
   font-size: 4rem;
   margin: 0;
-  padding: 30px 15px;
+}
+
+.overskrift h2 {
+  color: var(--primary-color-contrast);
+  font-size: 2rem;
+  margin: 0;
 }
 
 .svar {
