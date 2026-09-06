@@ -12,7 +12,10 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "autoprefixer": "^10.5.4",
     "ejs": "^6.0.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.3.3"
   }
 }

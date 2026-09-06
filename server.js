@@ -2,39 +2,65 @@ import express from "express";
 
 const app = express();
 const port = 3000;
+
+const answers = [
+  {
+    keywords: ["navn", "hedder", "hvem er du"],
+    answer: "Jeg hedder Frederik. Hvad vil du ellers vide om mig?",
+  },
+  {
+    keywords: ["bor", "by", "fra"],
+    answer: "Jeg bor i Aarhus.",
+  },
+  {
+    keywords: ["fritid", "hobby", "kan lide"],
+    answer: "Hvad rager det dig?",
+  },
+];
+
+function findAnswer(question) {
+  const normalizedQuestion = question.toLowerCase();
+
+  for (const answerGroup of answers) {
+    const hasMatch = answerGroup.keywords.some((keyword) =>
+      normalizedQuestion.includes(keyword),
+    );
+
+    if (hasMatch) {
+      return answerGroup.answer;
+    }
+  }
+
+  return "Det kender jeg ikke svaret på endnu.";
+}
+
+const messages = [];
+
+app.use(express.static("public"));
+
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 
-const names = [];
-
-app.get("/", (request, response) => {
-  response.render("index", { name: "", age: "", error: "", names });
-});
-
-app.post("/submit", (request, response) => {
-  const age = request.body.age;
-  const name = request.body.name;
-
+app.post("/ask", (req, res) => {
+  const question = req.body.question.trim();
   let error = "";
 
-  if (!name || name.trim() === "") {
-    error = "Skriv dit navn, før du sender formularen.";
-  } else if (!age || Number.isNaN(Number(age))) {
-    error = "Skriv en alder som et tal.";
-  } else if (
-    !Number.isInteger(Number(age)) ||
-    Number(age) < 1 ||
-    Number(age) > 120
-  ) {
-    error = "Skriv en alder som et helt tal mellem 1 og 120.";
+  if (!question) {
+    error = "Skriv et spørgsmål, før du sender.";
   } else {
-    names.push(name);
+    messages.push({ type: "question", text: question });
+    const answer = findAnswer(question);
+    messages.push({ type: "answer", text: answer });
   }
 
-  response.render("index", { name, age, error, names });
+  res.render("index", { messages, error });
+});
+
+app.get("/", (req, res) => {
+  res.render("index", { messages, error: "" });
 });
 
 app.listen(port, () => {
-  console.log(`Serveren kører på http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
