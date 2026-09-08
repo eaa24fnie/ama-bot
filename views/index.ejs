@@ -24,24 +24,38 @@
       </div>
       <div class="svar">
         <% for (const message of messages) { %>
-            <% if (message.type === "question") { %> <article class="question"> <p><%= message.text %></p> </article> <% } %>
-            <% if (message.type === "answer") { %> <article class="answer"> <p><%= message.text %></p> </article> <% } %>
+
+            <% if (message.type === "question") { %>
+              <article class="question">
+                <p><%= message.text %></p> 
+              </article> <% } %>
+
+            <% if (message.type === "answer") { %>
+              <article class="answer">
+                <time><%= message.createdAt.toLocaleTimeString("da-DK") %></time>
+                <p><%= message.text %></p>
+            </article><% } %>
         <% } %>
+        
     </div>
 
       <form class="spørgsmål" method="POST" action="/ask">
-        <label for="question">Skriv dit spørgsmål her:</label>
         <div>
           <input
             type="text"
             id="question"
             name="question"
-            placeholder="Skriv her..."
+            placeholder="Skriv dit spørgsmål her:"
           />
           <button type="submit">Send</button>
         </div>
+        
       </form>
+      
 
     </main>
+    <form class="ryd" method="POST" action="/clear-messages">
+  <button type="submit">Ryd beskeder</button>
+</form>
   </body>
 </html>

@@ -61,7 +61,6 @@ body {
   flex-direction: column;
   justify-content: end;
   align-items: start;
-  padding: 30px 15px;
   width: 100%;
   max-width: 400px;
   height: 400px;
@@ -69,7 +68,6 @@ body {
   border-style: solid none;
   overflow-y: hidden;
   gap: 10px;
-  
 }
 
 .svar p {
@@ -81,21 +79,33 @@ body {
 }
 
 .svar article {
-  width: 100%;
+  min-width: stretch;
+}
+
+.svar .question,
+.svar .answer {
+  padding: 15px;
+  flex-direction: column;
 }
 
 .svar .question {
-  color: var(--primary-color-contrast);
   opacity: 60%;
   font-family: var(--font);
   font-size: 1rem;
   display: flex;
-  justify-content: end;
+  align-items: flex-end;
+  background: rgb(220, 220, 220);
+}
+
+.svar time {
+  font-size: 0.8rem;
+  opacity: 50%;
+  font-family: var(--font);
 }
 
 .spørgsmål {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -103,20 +113,34 @@ body {
   padding: 10px 10px 30px 10px;
 }
 
+.spørgsmål div {
+  gap: 10px;
+  display: flex;
+}
+
 .spørgsmål input {
   padding: 15px;
   font-size: 16px;
   font-family: var(--font);
-  border: 2px var(--primary-color-contrast);
+  border: white;
   border-style: solid;
 }
 
 .spørgsmål button {
   padding: 15px;
   font-size: 16px;
-  background: var(--primary-color-contrast);
-  border: 2px var(--primary-color);
+  background: var(--primary-color);
+  border: 2px white;
   border-style: solid;
-  color: var(--primary-color);
+  color: white;
   font-family: var(--font);
+}
+
+.spørgsmål button:hover {
+  background: white;
+}
+
+.ryd {
+  position: absolute;
+  top: 20px;
 }
