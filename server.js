@@ -5,21 +5,29 @@ const port = 3000;
 
 const answers = [
   {
+    category: "navn",
     keywords: ["navn", "hedder", "hvem er du"],
-    answers: [
-      "Jeg hedder Frederik. Hvad vil du ellers vide om mig?",
-      "Pretty boy F",
-    ],
+    answer: "Jeg hedder Frederik.",
   },
   {
+    category: "by",
     keywords: ["bor", "by", "fra"],
-    answers: ["Jeg bor i Aarhus.", "Jeg bor i nuet"],
+    answer: "Jeg bor i Aarhus.",
   },
   {
+    category: "fritid",
     keywords: ["fritid", "hobby", "kan lide"],
-    answers: ["Hvad rager det dig?", "se film i guess?"],
+    answer: "Jeg kan godt lide at se film.",
   },
 ];
+
+function countMatches(keywords, normalizedQuestion) {
+  const matches = keywords.filter((keyword) =>
+    normalizedQuestion.includes(keyword),
+  );
+
+  return matches.length;
+}
 
 function findAnswer(question) {
   const normalizedQuestion = question.toLowerCase();
@@ -44,7 +52,35 @@ function sanitizeQuestion(input) {
   return input.replace(/[\u0000-\u001F\u007F]/g, "");
 }
 
+function findBestAnswer(question) {
+  const normalizedQuestion = question.toLowerCase();
+  let bestScore = 0;
+  let bestAnswer = "Det kender jeg ikke svaret på endnu.";
+  let bestCategory = "";
+
+  for (const answerGroup of answers) {
+    const score = countMatches(answerGroup.keywords, normalizedQuestion);
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestAnswer = answerGroup.answer;
+      bestCategory = answerGroup.category;
+    }
+  }
+
+  return {
+    answer: bestAnswer,
+    category: bestCategory,
+  };
+}
+
 const messages = [];
+
+const topicStats = {
+  navn: 0,
+  by: 0,
+  fritid: 0,
+};
 
 app.use(express.static("public"));
 
@@ -57,26 +93,36 @@ app.post("/clear-messages", (req, res) => {
   res.redirect("/");
 });
 
-app.post("/ask", (req, res) => {
-  const rawQuestion = req.body.question;
-  const question = sanitizeQuestion(rawQuestion).trim();
+app.post("/ask", (request, response) => {
+  const question = request.body.question.trim();
   let error = "";
 
   if (!question) {
     error = "Skriv et spørgsmål, før du sender.";
-  } else if (question.length > 280) {
-    error = "Spørgsmålet er for langt. Hold det under 280 tegn.";
   } else {
     messages.push({ type: "question", text: question, createdAt: new Date() });
-    const answer = findAnswer(question);
-    messages.push({ type: "answer", text: answer, createdAt: new Date() });
+
+    const result = findBestAnswer(question);
+    messages.push({
+      type: "answer",
+      text: result.answer,
+      createdAt: new Date(),
+    });
+
+    if (result.category) {
+      topicStats[result.category] = topicStats[result.category] + 1;
+    }
   }
 
-  res.render("index", { messages, error });
+  response.render("index", { messages, error, topicStats });
 });
 
 app.get("/", (req, res) => {
-  res.render("index", { messages, error: "" });
+  res.render("index", {
+    messages,
+    error: "",
+    topicStats,
+  });
 });
 
 app.listen(port, () => {
