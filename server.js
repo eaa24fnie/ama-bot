@@ -1,26 +1,9 @@
 import express from "express";
 import fs from "node:fs/promises";
+import answers from "./data/answers.json" with { type: "json" };
 
 const app = express();
 const port = 3000;
-
-const answers = [
-  {
-    category: "navn",
-    keywords: ["navn", "hedder", "hvem er du"],
-    answer: "Jeg hedder Frederik.",
-  },
-  {
-    category: "by",
-    keywords: ["bor", "by", "fra"],
-    answer: "Jeg bor i Aarhus.",
-  },
-  {
-    category: "fritid",
-    keywords: ["fritid", "hobby", "kan lide"],
-    answer: "Jeg kan godt lide at se film.",
-  },
-];
 
 function countMatches(keywords, normalizedQuestion) {
   const matches = keywords.filter((keyword) =>

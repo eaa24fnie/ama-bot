@@ -1,0 +1,17 @@
+[
+  {
+    "category": "navn",
+    "keywords": ["navn", "hedder", "hvem er du"],
+    "answer": "Jeg hedder Frederik."
+  },
+  {
+    "category": "by",
+    "keywords": ["bor", "by", "fra"],
+    "answer": "Jeg bor i Aarhus."
+  },
+  {
+    "category": "fritid",
+    "keywords": ["fritid", "hobby", "kan lide"],
+    "answer": "Jeg kan godt lide at se film."
+  }
+]
