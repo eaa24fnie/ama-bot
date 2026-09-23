@@ -16,21 +16,28 @@
   <body> <% if (error) { %>
   <p role="alert"><%= error %></p>
 <% } %>
-    <main class="chatbot">
+<main>
+    <section class="chatbot">
         <div class="svar">
-          <% for (const message of messages) { %>
+          <% for (let i = 0; i < messages.length; i += 2) { %>
+            <section class="message-block">
 
-              <% if (message.type === "question") { %>
-                <article class="question">
-                  <p><%= message.text %></p> 
-                </article> <% } %>
+              <% if (messages[i]) { %>
+                <article class="<%= messages[i].type %>">
+                  <p><%= messages[i].text %></p>
+                </article>
+              <% } %>
 
-              <% if (message.type === "answer") { %>
-                <article class="answer">
-                  <p><%= message.text %></p>
-              </article><% } %>
+              <% if (messages[i + 1]) { %>
+                <article class="<%= messages[i + 1].type %>">
+                  <p><%= messages[i + 1].text %></p>
+                </article>
+              <% } %>
+
+            </section>
           <% } %>
-      </div>
+        </div>
+
       <div class="gameboy">
         <div class="overskrift">
           <div >
@@ -42,7 +49,7 @@
         </div>
         <div>
           <form class="spørgsmål" method="POST" action="/ask">
-            <div>
+            
               <input
                 type="text"
                 id="question"
@@ -52,13 +59,15 @@
               <div class="char-counter">
                 <span id="char-count">0</span>/280
               </div>
-              <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M1.7163 6.9585L21.7163 1.0411C21.8084 1.0138 21.9039 1 22 1C22.5523 1 23 1.4477 23 2C23 2.0961 22.9862 2.1916 22.9589 2.2837L17.0415 22.2837C16.9158 22.7085 16.5256 23 16.0826 23C15.7522 23 15.443 22.8368 15.2567 22.5638L9.6495 14.3505L1.4362 8.7433C1.1632 8.557 1 8.2478 1 7.9174C1 7.4744 1.2915 7.0842 1.7163 6.9585ZM16.1845 7.8155L8.3888 13.4899L9.6495 14.3505L10.5101 15.6112L16.1845 7.8155Z"/></svg></button>
-            
+              <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M4 19h4v2H2v-8h2v6Zm8 0H8v-2h4v2Zm4-2h-4v-2h4v2Zm4-2h-4v-2h4v2Zm-10-2H4v-2h6v2Zm12 0h-2v-2h2v2ZM8 5H4v6H2V3h6v2Zm12 6h-4V9h4v2Zm-4-2h-4V7h4v2Zm-4-2H8V5h4v2Z"/></svg>
+              </button>
           </form>
         </div>
         
       </div>
       <?xml version="1.0" encoding="UTF-8"?>
+      <!--
       <svg class="face" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.27 303.62">
         <defs>
           <style>
@@ -96,8 +105,9 @@
           <polygon points="141.64 76.78 114.96 151.73 141.64 146.46 141.64 76.78"/>
         </g>
       </svg>
-    </main>
-
+      -->
+    </section>
+</main>
   </div>
   <!--
     <div class="emner">
