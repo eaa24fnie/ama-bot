@@ -56,10 +56,9 @@ main {
 }
 
 .gameboy {
-  width: 400px;
   background: var(--gameboy-body);
   border-top: 8px solid var(--gameboy-body-contrast);
-  padding: 10px;
+  padding: 24px;
   gap: 20px;
   display: flex;
   flex-direction: column;
@@ -84,11 +83,19 @@ main {
   flex-direction: column;
   justify-content: end;
   align-items: start;
+  width: 600px;
   width: stretch;
-  max-width: 400px;
   height: 500px;
   overflow-y: hidden;
-  border: 10px solid var(--gameboy-screen-dark);
+  position: relative;
+}
+
+.svar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 10px solid rgba(0, 0, 0, 0.3);
+  pointer-events: none;
 }
 
 .svar p {
@@ -104,11 +111,24 @@ main {
 
 .svar > section {
   width: stretch;
-  padding: 15px;
+  padding: 20px 30px;
 }
 
 .svar > section:nth-child(even) {
   background: var(--gameboy-screen-light-darker);
+}
+
+.svar > section:nth-last-child(-n + 1) {
+  padding-bottom: 40px;
+  background: var(--gameboy-screen-highlight);
+}
+
+.svar > section:last-child .question {
+  font-size: 1.5rem;
+}
+
+.svar > section:last-child .answer {
+  font-size: 2rem;
 }
 
 .svar .question,
@@ -152,7 +172,7 @@ main {
   border-style: none;
   background: none;
   height: 100%;
-  width: stretch;
+  width: 300px;
   color: var(--gameboy-screen-darkest);
 }
 
