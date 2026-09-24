@@ -18,6 +18,10 @@
 <% } %>
 <main>
     <section class="chatbot">
+      <div class="overskrift">
+            <h1>Chatbot</h1>
+          
+        </div>
         <div class="svar">
           <% for (let i = 0; i < messages.length; i += 2) { %>
             <section class="message-block">
@@ -39,14 +43,9 @@
         </div>
 
       <div class="gameboy">
-        <div class="overskrift">
-          <div >
-            <h1>Chatbot</h1>
-          </div>
-          <form class="ryd" method="POST" action="/clear-messages">
-              <button type="submit">Ryd</button>
+        <form class="ryd" method="POST" action="/clear-messages">
+              <button type="submit">Ryd historik</button>
           </form>
-        </div>
         <div>
           <form class="spørgsmål" method="POST" action="/ask">
             
@@ -56,56 +55,18 @@
                 name="question"
                 placeholder="Skriv dit spørgsmål her:"
               />
+              <div class="input-højre">
               <div class="char-counter">
                 <span id="char-count">0</span>/280
               </div>
               <button type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M4 19h4v2H2v-8h2v6Zm8 0H8v-2h4v2Zm4-2h-4v-2h4v2Zm4-2h-4v-2h4v2Zm-10-2H4v-2h6v2Zm12 0h-2v-2h2v2ZM8 5H4v6H2V3h6v2Zm12 6h-4V9h4v2Zm-4-2h-4V7h4v2Zm-4-2H8V5h4v2Z"/></svg>
-              </button>
+              </button></div>
           </form>
         </div>
         
       </div>
       <?xml version="1.0" encoding="UTF-8"?>
-      <!--
-      <svg class="face" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.27 303.62">
-        <defs>
-          <style>
-            .cls-1 {
-              fill: #fff;
-            }
-
-            .cls-2 {
-              fill: #ec1c24;
-            }
-
-            .cls-3 {
-              fill: #808184;
-            }
-          </style>
-        </defs>
-        <g id="Layer_5" data-name="Layer 5">
-          <path class="cls-3" d="M283.27,303.62c0-78.22-63.41-141.64-141.64-141.64S0,225.39,0,303.62h283.27Z"/>
-        </g>
-        <g id="Layer_2" data-name="Layer 2">
-          <path class="cls-2" d="M64.64,99.93c0-12.79-10.37-23.15-23.15-23.15s-23.15,10.37-23.15,23.15c0,6.34,2.55,12.08,6.67,16.26-.43,1.31-.66,2.71-.66,4.17,0,7.46,6.05,13.5,13.5,13.5s13.19-5.76,13.48-12.97c7.87-3.7,13.32-11.69,13.32-20.96Z"/>
-          <path class="cls-2" d="M218.63,99.93c0-12.79,10.37-23.15,23.15-23.15,12.79,0,23.15,10.37,23.15,23.15,0,6.34-2.55,12.08-6.67,16.26.43,1.31.66,2.71.66,4.17,0,7.46-6.05,13.5-13.5,13.5-7.28,0-13.19-5.76-13.48-12.97-7.87-3.7-13.32-11.69-13.32-20.96Z"/>
-          <circle class="cls-2" cx="141.64" cy="100.15" r="100.15"/>
-        </g>
-        <g id="Layer_1" data-name="Layer 1">
-          <polygon points="241.78 100.15 214.5 154.59 187.64 171.43 185.02 155.04 141.64 146.46 98.25 155.04 95.01 175.35 68.77 154.59 41.49 100.15 31.49 172.12 70.92 227.16 141.64 276.72 212.36 227.16 251.79 172.12 241.78 100.15"/>
-        </g>
-        <g id="Layer_3" data-name="Layer 3">
-          <rect x="91.89" y="75.12" width="17.15" height="27.45" rx="8.58" ry="8.58"/>
-          <rect x="174.23" y="75.12" width="17.15" height="27.45" rx="8.58" ry="8.58"/>
-          <path class="cls-2" d="M174.34,168.75v17.99l-15.92,12.74-4.02-3.87v-9.17l-12.76-2.33-12.77,2.33v9.17l-4.02,3.87-15.92-12.74v-17.99s5.73,6.77,32.71,6.77,32.7-6.77,32.7-6.77Z"/>
-          <rect x="159.43" y="49.24" width="53.91" height="16.33" transform="translate(8.73 -23.05) rotate(7.24)"/>
-          <rect x="70.7" y="49.24" width="53.91" height="16.33" transform="translate(201.78 102.03) rotate(172.76)"/>
-          <path class="cls-1" d="M174.34,168.75s-5.72,6.77-32.7,6.77-32.71-6.77-32.71-6.77c0,0,5.72-6.77,32.7-6.77s32.71,6.77,32.71,6.77Z"/>
-          <polygon points="141.64 76.78 114.96 151.73 141.64 146.46 141.64 76.78"/>
-        </g>
-      </svg>
-      -->
     </section>
 </main>
   </div>
