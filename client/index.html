@@ -19,18 +19,13 @@
     <main>
       <section class="chatbot">
         <div class="overskrift">
-          <h1>Chatbot</h1>
+          <h1><span>FREDERIK</span>BOT</h1>
         </div>
         <div class="svar">
           <section id="messages" class="message-block"></section>
         </div>
 
         <div class="gameboy">
-          <form class="ryd">
-            <button type="submit" id="clear-messages-button">
-              Ryd historik
-            </button>
-          </form>
           <div>
             <form
               class="spørgsmål"
@@ -45,9 +40,10 @@
                 placeholder="Skriv dit spørgsmål her:"
               />
               <div class="input-højre">
+                <!--
                 <div class="char-counter">
                   <span id="char-count">0</span>/280
-                </div>
+                </div>-->
                 <button type="submit">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -62,9 +58,80 @@
               </div>
             </form>
           </div>
+          <div class="bottom">
+            <form class="ryd">
+              <button type="submit" id="clear-messages-button">
+                Ryd historik
+              </button>
+            </form>
+            <div class="dots">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
         </div>
-        <?xml version="1.0" encoding="UTF-8"?>
+
+        <!--<div class="face">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 246.6 276.72">
+            <g id="Layer_2" data-name="Layer 2">
+              <path
+                class="cls-2"
+                d="M246.6,99.93c0-12.79-10.37-23.15-23.15-23.15-.92,0-1.82.06-2.71.16C210.27,32.82,170.62,0,123.3,0S36.33,32.82,25.86,76.94c-.89-.1-1.79-.16-2.71-.16-12.79,0-23.15,10.37-23.15,23.15,0,6.34,2.55,12.08,6.67,16.26-.43,1.31-.66,2.71-.66,4.17,0,7.46,6.05,13.5,13.5,13.5,3.2,0,6.14-1.12,8.45-2.98,12.97,40.28,50.75,96.11,95.34,96.11s82.37-55.83,95.34-96.11c2.31,1.86,5.25,2.98,8.45,2.98,7.46,0,13.5-6.05,13.5-13.5,0-1.46-.24-2.86-.66-4.17,4.12-4.18,6.67-9.92,6.67-16.26Z"
+              />
+            </g>
+            <g id="Layer_1" data-name="Layer 1">
+              <path
+                class="cls-1"
+                d="M156.01,168.75s-5.72,6.77-32.7,6.77-32.71-6.77-32.71-6.77c0,0,5.72-6.77,32.7-6.77s32.71,6.77,32.71,6.77Z"
+              />
+            </g>
+            <g id="Layer_3" data-name="Layer 3">
+              <g>
+                <rect
+                  class="cls-3"
+                  x="73.56"
+                  y="75.12"
+                  width="17.15"
+                  height="27.45"
+                  rx="8.58"
+                  ry="8.58"
+                />
+                <rect
+                  class="cls-3"
+                  x="155.89"
+                  y="75.12"
+                  width="17.15"
+                  height="27.45"
+                  rx="8.58"
+                  ry="8.58"
+                />
+                <rect
+                  class="cls-3"
+                  x="141.1"
+                  y="49.24"
+                  width="53.91"
+                  height="16.33"
+                  transform="translate(8.58 -20.73) rotate(7.24)"
+                />
+                <rect
+                  class="cls-3"
+                  x="52.37"
+                  y="49.24"
+                  width="53.91"
+                  height="16.33"
+                  transform="translate(165.26 104.34) rotate(172.76)"
+                />
+                <path
+                  class="cls-3"
+                  d="M223.46,100.15l-27.29,54.44-26.86,16.84-2.62-16.39-43.38-8.58v-69.68l-26.68,74.96-16.71,3.3-3.24,20.31-26.24-20.76-27.28-54.44-10,71.97,39.43,55.04,70.72,49.56,70.72-49.56,39.43-55.04-10-71.97ZM156.01,186.74l-15.92,12.74-4.02-3.87v-9.17l-12.76-2.33-12.77,2.33v9.17l-4.02,3.87-15.92-12.74v-17.99s5.72-6.77,32.7-6.77,32.71,6.77,32.71,6.77v17.99Z"
+                />
+              </g>
+            </g>
+          </svg>
+        </div>-->
       </section>
+      <div class="shine"></div>
     </main>
     <script src="script.js"></script>
   </body>

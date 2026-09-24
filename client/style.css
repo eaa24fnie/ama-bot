@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 
 :root {
   /* Game Boy palette */
@@ -10,13 +10,14 @@
   --grey: #aaa79d;
   --white: #d8d5ca;
 
-  --font: "Pixelify Sans", sans-serif;
+  --font: "Silkscreen", sans-serif;
 
   --gameboy-body: #d4d4d4;
   --gameboy-body-light: #f5f5f5;
   --gameboy-body-contrast: #a1a1a1;
-  --gameboy-dark: #3f3d3a;
-  --gameboy-button-light: #70385d;
+  --gameboy-dark: #7c7c7c;
+  --gameboy-darkest: #414141;
+  --gameboy-button-light: #b6348b;
   --gameboy-button-dark: #552344;
 
   --gameboy-screen-darkest: #364322;
@@ -32,17 +33,34 @@ body {
   align-items: center;
   height: 100vh;
   font-family: var(--font);
-  background-color: var(--white);
+  background-color: var(--gameboy-body-light);
+}
+
+button {
+  transition: 0.2s;
 }
 
 main {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 28px;
-  background: var(--gameboy-body-contrast);
-  filter: drop-shadow(8px 8px 0px var(--gameboy-body-contrast));
+}
+
+main::after {
+  content: "";
+  position: absolute;
+  border-radius: 26px;
+  inset: 8px -12px -8px 8px;
+  background: linear-gradient(
+    to bottom,
+    var(--gameboy-dark),
+    var(--gameboy-darkest)
+  );
+  z-index: -1;
+  box-shadow: inset -4px -4px 0
+    color-mix(in srgb, var(--gameboy-darkest) 30%, transparent);
 }
 
 .chatbot {
@@ -52,19 +70,30 @@ main {
   gap: 8px;
   border-radius: 24px;
   width: 350px;
-  padding: 8px;
+  padding: 12px;
   font-family: var(--font);
   position: relative;
   background: var(--gameboy-body);
   border: 4px solid var(--gameboy-body-contrast);
+  box-shadow: inset 3px 3px 0
+    color-mix(in srgb, var(--gameboy-body-light) 60%, transparent);
+}
+
+.shine {
+  position: absolute;
+  background: var(--gameboy-body-light);
+  width: 20%;
+  left: 0;
+  height: 100%;
+  opacity: 12%;
 }
 
 .gameboy {
-  background: var(--gameboy-body);
-  gap: 10px;
+  gap: 24px;
   display: flex;
   flex-direction: column;
-  padding: 20px 10px 30px 10px;
+  padding: 12px 0 16px 0;
+  z-index: 1;
 }
 
 .overskrift {
@@ -76,11 +105,14 @@ main {
 
 .overskrift h1 {
   color: var(--gameboy-dark);
-  font-size: 1rem;
-  letter-spacing: 60%;
+  font-size: 1.2rem;
   text-transform: uppercase;
   font-weight: 200;
   margin: 0;
+}
+
+.overskrift h1 span {
+  font-weight: 800;
 }
 
 .svar {
@@ -93,6 +125,7 @@ main {
   height: 500px;
   overflow-y: hidden;
   position: relative;
+  border-radius: 16px;
 }
 
 .svar::after {
@@ -100,14 +133,17 @@ main {
   position: absolute;
   inset: 0;
   pointer-events: none;
-
+  border-radius: 12px;
   background: linear-gradient(
     to bottom,
     var(--gameboy-screen-light) 2%,
     rgba(0, 0, 0, 0) 30%
   );
-
-  box-shadow: inset 8px 12px 12px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 6px 6px 0
+      color-mix(in srgb, var(--gameboy-screen-darkest) 30%, transparent),
+    inset -3px -3px 0
+      color-mix(in srgb, var(--gameboy-screen-darkest) 30%, transparent);
 }
 
 .svar p {
@@ -117,33 +153,38 @@ main {
   font-family: var(--font);
 }
 
-.svar article {
-  min-width: stretch;
-}
-
 .svar > section {
   width: stretch;
-  padding: 16px;
 }
 
-.svar > section:nth-child(even) {
+.svar > section > div:nth-child(even) {
   background: var(--gameboy-screen-dark);
 }
 
-.svar .question,
 .svar .answer {
-  flex-direction: column;
-}
-
-.svar .answer {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .svar .question {
   font-family: var(--font);
-  font-size: 1rem;
+  opacity: 60%;
+  font-size: 0.7rem;
   display: flex;
-  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.message-block > div {
+  padding: 12px 24px;
+}
+
+.svar > section > .qa:nth-last-child(1) .question {
+  padding-top: 16px;
+  font-size: 1rem;
+}
+
+.svar > section > .qa:nth-last-child(1) .answer {
+  padding-bottom: 24px;
+  font-size: 1.6rem;
 }
 
 .svar time {
@@ -156,6 +197,7 @@ main {
   display: flex;
   width: stretch;
   background: var(--gameboy-body-light);
+  border: 2px solid var(--gameboy-body-contrast);
   border-radius: 100px;
   gap: 10px;
   justify-content: space-between;
@@ -166,12 +208,17 @@ main {
 }
 
 .spørgsmål input {
-  font-size: 16px;
+  font-size: 0.9rem;
   font-family: var(--font);
   border-style: none;
   background: none;
   height: 100%;
-  color: var(--gameboy-screen-darkest);
+  width: stretch;
+  color: var(--gameboy-body-contrast);
+}
+
+.spørgsmål input::placeholder {
+  color: var(--gameboy-body-contrast);
 }
 
 .spørgsmål button {
@@ -185,6 +232,19 @@ main {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow:
+    inset -3px -3px 0
+      color-mix(in srgb, var(--gameboy-button-dark) 30%, transparent),
+    inset 5px 3px 0
+      color-mix(in srgb, var(--gameboy-body-light) 30%, transparent);
+}
+
+.spørgsmål button:hover {
+  box-shadow:
+    inset -3px -3px 0
+      color-mix(in srgb, var(--gameboy-button-dark) 30%, transparent),
+    inset 2px 2px 0
+      color-mix(in srgb, var(--gameboy-body-light) 30%, transparent);
 }
 
 .spørgsmål button svg {
@@ -200,18 +260,22 @@ main {
 }
 
 .ryd {
-  width: fit-content;
   display: flex;
+  justify-content: end;
 }
 
 .ryd button {
-  color: var(--gameboy-dark);
+  color: var(--gameboy-body-contrast);
   border: none;
   background: none;
   font-family: var(--font);
   text-transform: uppercase;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 0.8rem;
+}
+
+.ryd button:hover {
+  color: var(--gameboy-body-light);
 }
 
 .emner {
@@ -236,13 +300,45 @@ main {
 
 .face {
   position: absolute;
-  background: var(--gameboy-body);
-  top: 0;
-  height: 100px;
+  bottom: 12px;
+  left: 12px;
+  height: 60px;
   width: auto;
-  border: 8px solid var(--gameboy-body-contrast);
-  border-left: none;
-  border-top: none;
-  padding: 20px 10px;
-  padding-bottom: 0px;
+}
+
+.face svg {
+  height: 100%;
+  width: auto;
+}
+
+.cls-1 {
+  fill: var(--gameboy-body);
+}
+
+.cls-2 {
+  fill: var(--gameboy-body);
+}
+
+.cls-3 {
+  fill: var(--gameboy-body-contrast);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding-right: 12px;
+}
+
+.dots div {
+  width: 24px;
+  height: 3px;
+  border-radius: 20px;
+  background: var(--gameboy-body-contrast);
 }

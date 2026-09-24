@@ -7,13 +7,29 @@ const API_URL = "http://localhost:3000";
 console.log("app.js er forbundet");
 
 function displayMessage(message) {
-  const html = /*html*/ `
-    <article class="${message.type}">
-      <p>${message.text}</p>
-    </article>`;
+  if (message.type === "question") {
+    const html = /*html*/ `
+      <div class="qa">
+        <article class="question">
+          <p>${message.text}</p>
+        </article>
+      </div>
+    `;
 
-  messagesContainer.insertAdjacentHTML("beforeend", html);
-  console.log(html);
+    messagesContainer.insertAdjacentHTML("beforeend", html);
+  }
+
+  if (message.type === "answer") {
+    const lastQA = messagesContainer.lastElementChild;
+
+    const html = /*html*/ `
+      <article class="answer">
+        <p>${message.text}</p>
+      </article>
+    `;
+
+    lastQA.insertAdjacentHTML("beforeend", html);
+  }
 }
 
 async function getMessages() {
