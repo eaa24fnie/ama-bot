@@ -130,18 +130,6 @@ main {
   background: var(--gameboy-screen-dark);
 }
 
-.svar > section:nth-last-child(-n + 1) {
-  padding: 30px 16px 36px 16px;
-}
-
-.svar > section:last-child .question {
-  font-size: 1.2rem;
-}
-
-.svar > section:last-child .answer {
-  font-size: 1.5rem;
-}
-
 .svar .question,
 .svar .answer {
   flex-direction: column;

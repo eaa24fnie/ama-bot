@@ -11,44 +11,33 @@
     <link rel="icon" href="public/img/favicon.ico" />
 
     <meta name="description" content="Page description" />
+
+    <script src="app.js" defer></script>
   </head>
 
-  <body> <% if (error) { %>
-  <p role="alert"><%= error %></p>
-<% } %>
-<main>
-    <section class="chatbot">
-      <div class="overskrift">
-            <h1>Chatbot</h1>
-          
+  <body>
+    <main>
+      <section class="chatbot">
+        <div class="overskrift">
+          <h1>Chatbot</h1>
         </div>
         <div class="svar">
-          <% for (let i = 0; i < messages.length; i += 2) { %>
-            <section class="message-block">
-
-              <% if (messages[i]) { %>
-                <article class="<%= messages[i].type %>">
-                  <p><%= messages[i].text %></p>
-                </article>
-              <% } %>
-
-              <% if (messages[i + 1]) { %>
-                <article class="<%= messages[i + 1].type %>">
-                  <p><%= messages[i + 1].text %></p>
-                </article>
-              <% } %>
-
-            </section>
-          <% } %>
+          <section id="messages" class="message-block"></section>
         </div>
 
-      <div class="gameboy">
-        <form class="ryd" method="POST" action="/clear-messages">
-              <button type="submit">Ryd historik</button>
+        <div class="gameboy">
+          <form class="ryd">
+            <button type="submit" id="clear-messages-button">
+              Ryd historik
+            </button>
           </form>
-        <div>
-          <form class="spørgsmål" method="POST" action="/ask">
-            
+          <div>
+            <form
+              class="spørgsmål"
+              id="question-form"
+              method="POST"
+              action="/ask"
+            >
               <input
                 type="text"
                 id="question"
@@ -56,30 +45,27 @@
                 placeholder="Skriv dit spørgsmål her:"
               />
               <div class="input-højre">
-              <div class="char-counter">
-                <span id="char-count">0</span>/280
+                <div class="char-counter">
+                  <span id="char-count">0</span>/280
+                </div>
+                <button type="submit">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M4 19h4v2H2v-8h2v6Zm8 0H8v-2h4v2Zm4-2h-4v-2h4v2Zm4-2h-4v-2h4v2Zm-10-2H4v-2h6v2Zm12 0h-2v-2h2v2ZM8 5H4v6H2V3h6v2Zm12 6h-4V9h4v2Zm-4-2h-4V7h4v2Zm-4-2H8V5h4v2Z"
+                    />
+                  </svg>
+                </button>
               </div>
-              <button type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M4 19h4v2H2v-8h2v6Zm8 0H8v-2h4v2Zm4-2h-4v-2h4v2Zm4-2h-4v-2h4v2Zm-10-2H4v-2h6v2Zm12 0h-2v-2h2v2ZM8 5H4v6H2V3h6v2Zm12 6h-4V9h4v2Zm-4-2h-4V7h4v2Zm-4-2H8V5h4v2Z"/></svg>
-              </button></div>
-          </form>
+            </form>
+          </div>
         </div>
-        
-      </div>
-      <?xml version="1.0" encoding="UTF-8"?>
-    </section>
-</main>
-  </div>
-  <!--
-    <div class="emner">
-      <h2>Spørgsmål fordelt på emner</h2>
-      <ul>
-      <li>Navn: <%= topicStats.navn %></li>
-      <li>By: <%= topicStats.by %></li>
-      <li>Fritid: <%= topicStats.fritid %></li>
-      </ul>
-  </div>-->
-<script src="script.js"></script> 
-
+        <?xml version="1.0" encoding="UTF-8"?>
+      </section>
+    </main>
+    <script src="script.js"></script>
   </body>
 </html>

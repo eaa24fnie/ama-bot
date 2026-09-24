@@ -21,7 +21,7 @@ router.post("/", async (request, response) => {
   };
   messages.push(message);
 
-  const result = findBestAnswer(question);
+  const result = await findBestAnswer(question);
   const answerMessage = {
     type: "answer",
     text: result.answer,

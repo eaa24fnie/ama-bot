@@ -1,4 +1,9 @@
-export function findBestAnswer(question) {
+import { loadAnswers } from "./answers.js";
+import { countMatches } from "./countMatches.js";
+
+export async function findBestAnswer(question) {
+  const answers = await loadAnswers();
+
   const normalizedQuestion = question.toLowerCase();
   let bestScore = 0;
   let bestAnswer = "Det kender jeg ikke svaret på endnu.";
