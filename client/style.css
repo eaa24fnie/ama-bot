@@ -60,7 +60,7 @@ main::after {
   );
   z-index: -1;
   box-shadow: inset -4px -4px 0
-    color-mix(in srgb, var(--gameboy-darkest) 30%, transparent);
+    color-mix(in srgb, var(--gameboy-darkest) 50%, transparent);
 }
 
 .chatbot {
@@ -75,7 +75,7 @@ main::after {
   position: relative;
   background: var(--gameboy-body);
   border: 4px solid var(--gameboy-body-contrast);
-  box-shadow: inset 3px 3px 0
+  box-shadow: inset 4px 4px 0
     color-mix(in srgb, var(--gameboy-body-light) 60%, transparent);
 }
 
@@ -126,6 +126,7 @@ main::after {
   overflow-y: hidden;
   position: relative;
   border-radius: 16px;
+  border: 4px solid var(--gameboy-body-contrast);
 }
 
 .svar::after {
@@ -141,9 +142,9 @@ main::after {
   );
   box-shadow:
     inset 6px 6px 0
-      color-mix(in srgb, var(--gameboy-screen-darkest) 30%, transparent),
-    inset -3px -3px 0
-      color-mix(in srgb, var(--gameboy-screen-darkest) 30%, transparent);
+      color-mix(in srgb, var(--gameboy-screen-darkest) 40%, transparent),
+    inset -4px -4px 0
+      color-mix(in srgb, var(--gameboy-screen-darkest) 20%, transparent);
 }
 
 .svar p {
@@ -341,4 +342,32 @@ main::after {
   height: 3px;
   border-radius: 20px;
   background: var(--gameboy-body-contrast);
+}
+
+.antenna {
+  position: absolute;
+  z-index: -1;
+  top: -56px;
+  left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.antenna > div {
+  border-radius: 4px 4px 0 0;
+  background: var(--gameboy-body-contrast);
+  box-shadow: inset 3px 3px 0
+    color-mix(in srgb, var(--gameboy-body-light) 40%, transparent);
+}
+
+.antenna > div:nth-child(1) {
+  height: 48px;
+  width: 8px;
+}
+
+.antenna > div:nth-child(2) {
+  height: 18px;
+  width: 32px;
+  background: var(--gameboy-dark);
 }

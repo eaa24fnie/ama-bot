@@ -88,5 +88,45 @@
     "type": "answer",
     "text": "Jeg bor i Aarhus.",
     "createdAt": "2026-09-24T17:10:15.907Z"
+  },
+  {
+    "type": "question",
+    "text": "Navn",
+    "createdAt": "2026-09-24T19:55:25.234Z"
+  },
+  {
+    "type": "answer",
+    "text": "Jeg hedder Frederik.",
+    "createdAt": "2026-09-24T19:55:25.234Z"
+  },
+  {
+    "type": "question",
+    "text": "bor",
+    "createdAt": "2026-09-24T19:55:29.000Z"
+  },
+  {
+    "type": "answer",
+    "text": "Jeg bor i Aarhus.",
+    "createdAt": "2026-09-24T19:55:29.001Z"
+  },
+  {
+    "type": "question",
+    "text": "hobby",
+    "createdAt": "2026-09-24T20:35:52.047Z"
+  },
+  {
+    "type": "answer",
+    "text": "Jeg bor i Aarhus.",
+    "createdAt": "2026-09-24T20:35:52.047Z"
+  },
+  {
+    "type": "question",
+    "text": "navn",
+    "createdAt": "2026-09-24T20:44:18.214Z"
+  },
+  {
+    "type": "answer",
+    "text": "Jeg hedder Frederik.",
+    "createdAt": "2026-09-24T20:44:18.215Z"
   }
 ]
